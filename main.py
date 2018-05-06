@@ -10,7 +10,6 @@ from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 import cv2
 import os
-import numpy as np
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 import numpy as np
@@ -22,11 +21,10 @@ from keras.models import load_model
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 import sqlite3
-from kivy.app import App
 from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.graphics.texture import Texture
-import cv2
+
 
 # fix 3.6 tensorflow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -46,7 +44,7 @@ def detection_image(img):
     frame = test_img(img)
     model = load_model('positive_negative.model')
     negative, positive = model.predict(frame)[0]
-    if negative > 0.89:
+    if positive > 0.89:
         frame = cv2.pyrDown(frame)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2, 2))
