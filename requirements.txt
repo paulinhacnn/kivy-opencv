@@ -14,7 +14,7 @@ Kivy==1.9.1
 Kivy-Garden==0.1.4
 Markdown==2.6.11
 mock==2.0.0
-numpy==1.14.2
+numpy==1.22.0
 opencv-python==3.4.0.12
 pbr==4.0.2
 pexpect==4.5.0
